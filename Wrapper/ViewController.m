@@ -18,7 +18,7 @@
 #import "ViewController.h"
 
 static NSString *const SID_COOKIE = @"sid";
-static BOOL UseProxy = NO;
+static BOOL UseProxy = YES;
 static NSString *DefaultURL = @"https://community.ausure.com.au";
 
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -99,6 +99,12 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
         self.url = DefaultURL;
     
     NSURLRequest *request = self.URLRequest;
+    if (UseProxy)
+    {
+        self.proxyServer = [[ProxyServer alloc] init];
+        self.proxyServer.baseURL = request.URL.absoluteString;
+        request = [NSURLRequest requestWithURL:self.proxyServer.startProxy];
+    }
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];

@@ -18,8 +18,10 @@
     [self.webServer addDefaultHandlerForMethod:@"GET"
                               requestClass:[GCDWebServerRequest class]
                               processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                                  
-                                  return [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
+                                  NSLog(@"request: %@ - %@", request.path, [request.URL absoluteString]);
+                                  NSString *urlString = [self.baseURL stringByAppendingFormat:@"%@", request.path];
+                                  return [GCDWebServerDataResponse responseWithRedirect:[NSURL URLWithString:urlString] permanent:YES];
+                                 // return [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
                                   
                               }];
     
