@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		456758681F51344E00E292B5 /* ProxyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456758671F51344E00E292B5 /* ProxyServer.m */; };
 		459A8BC81F4F673B0037732F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BC71F4F673B0037732F /* AppDelegate.m */; };
 		459A8BCB1F4F673B0037732F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BCA1F4F673B0037732F /* ViewController.m */; };
 		459A8BCE1F4F673B0037732F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459A8BCC1F4F673B0037732F /* Main.storyboard */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		456758661F51344E00E292B5 /* ProxyServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyServer.h; sourceTree = "<group>"; };
+		456758671F51344E00E292B5 /* ProxyServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxyServer.m; sourceTree = "<group>"; };
 		459A8BC31F4F673B0037732F /* Wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459A8BC61F4F673B0037732F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		459A8BC71F4F673B0037732F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				45ADE6B61F4FE74C00FCB884 /* Wrapper.entitlements */,
 				459A8BC61F4F673B0037732F /* AppDelegate.h */,
 				459A8BC71F4F673B0037732F /* AppDelegate.m */,
+				456758661F51344E00E292B5 /* ProxyServer.h */,
+				456758671F51344E00E292B5 /* ProxyServer.m */,
 				459A8BC91F4F673B0037732F /* ViewController.h */,
 				459A8BCA1F4F673B0037732F /* ViewController.m */,
 				459A8BCC1F4F673B0037732F /* Main.storyboard */,
@@ -296,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				459A8BCB1F4F673B0037732F /* ViewController.m in Sources */,
+				456758681F51344E00E292B5 /* ProxyServer.m in Sources */,
 				459A8BD61F4F673B0037732F /* main.m in Sources */,
 				459A8BC81F4F673B0037732F /* AppDelegate.m in Sources */,
 			);
@@ -468,6 +474,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.communities.Wrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "GCDWebServer/**";
 			};
 			name = Debug;
 		};
@@ -483,6 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.communities.Wrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "GCDWebServer/**";
 			};
 			name = Release;
 		};
