@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface ViewController : UIViewController <WKNavigationDelegate, WKUIDelegate, WKHTTPCookieStoreObserver>
+@property (strong, atomic) WKWebView *webView;
+@property (strong, atomic) WKHTTPCookieStore *cookieStore;
+@property (strong, atomic) NSString *sid;
+@property (strong, atomic) NSString *url;
 @end
 
