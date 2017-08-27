@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 #import "ProxyServer.h"
+@import QuickLook;
 
-@interface ViewController : UIViewController <WKNavigationDelegate, WKUIDelegate, WKHTTPCookieStoreObserver>
+@interface ViewController : UIViewController <WKNavigationDelegate, WKUIDelegate, WKHTTPCookieStoreObserver, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 @property (strong, atomic) WKWebView *webView;
 @property (strong, atomic) WKHTTPCookieStore *cookieStore;
 @property (strong, atomic) NSString *sid;
 @property (strong, atomic) NSString *url;
 @property (strong, atomic) ProxyServer *proxyServer;
+@property (strong, atomic) NSURL *fileURL;
 @end
 

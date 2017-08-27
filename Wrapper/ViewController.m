@@ -16,6 +16,7 @@
 // Make stand alone SDK + App
 
 #import "ViewController.h"
+@import QuickLook;
 
 static NSString *const SID_COOKIE = @"sid";
 static BOOL UseProxy = YES;
@@ -56,7 +57,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     
     // Fetch prior Cookies - TODO: Only handle SID
     // TODO: Encrypt data - https://github.com/nielsmouthaan/SecureNSUserDefaults
-
+    
     NSData *cookiesdata = [[NSUserDefaults standardUserDefaults] objectForKey:self.cookieKey];
     if (cookiesdata && [cookiesdata length]) {
         NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
@@ -118,6 +119,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     // Inject cookies for Session/Refresh
     [self setupDefaultCookies];
     
+    NSLog(@"Loading initial page: %@", request.URL);
     if (request)
         [self.webView loadRequest:request];
     else
@@ -172,6 +174,60 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     // Stop spinner
     [self spinner:NO];
     // Throw up user notice
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
+    NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
+    NSLog(@"decidePolicyForNavigationResponse");
+    
+    NSArray *cookies =[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
+    for (NSHTTPCookie *cookie in cookies) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+    }
+    
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    return 1;
+}
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+    return self.fileURL;
+}
+
+//Download manager
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    NSURLRequest *request = navigationAction.request;
+    self.fileURL = request.URL;
+    NSLog(@"FileURL: %@", self.fileURL.absoluteString);
+    
+    NSString *externalFileExtension = self.fileURL.pathExtension;
+    if ([[externalFileExtension lowercaseString] isEqualToString:@"pdf"] ||
+        [self.fileURL.absoluteString containsString:@"servlet.FileDownload"])
+    {
+        
+        //Fire download
+        NSLog(@"externalURL is %@", self.fileURL);
+        QLPreviewController *ql = [[QLPreviewController alloc] init];
+        ql.title = self.fileURL.absoluteString;
+        ql.delegate = self;
+        ql.dataSource = self;
+        
+        if ([QLPreviewController canPreviewItem:self.fileURL])
+            [self presentViewController:ql animated:YES completion:nil];
+        else
+        {
+            // TODO: Tell user not supported file type.  Maybe try DocInterctionHandle
+            NSLog(@"Quicklook does not support file type");
+        }
+        
+        if (decisionHandler) {
+            decisionHandler(WKNavigationActionPolicyCancel);
+        }
+        return;
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)persistCookies
