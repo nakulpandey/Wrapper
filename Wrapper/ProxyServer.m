@@ -32,4 +32,9 @@
     return (self.webServer.serverURL);
 }
 
+- (NSURL *)serverURL
+{
+    return self.webServer.serverURL;
+}
+
 @end

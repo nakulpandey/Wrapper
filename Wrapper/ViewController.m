@@ -19,7 +19,7 @@
 @import QuickLook;
 
 static NSString *const SID_COOKIE = @"sid";
-static BOOL UseProxy = YES;
+static BOOL UseProxy = NO;
 static NSString *DefaultURL = @"https://community.ausure.com.au";
 
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -195,19 +195,52 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     return self.fileURL;
 }
 
-//Download manager
+- (BOOL)userIsLoggedIn
+{
+    return NO;
+}
+
+- (BOOL)requestedURLIsNonProxySite:(NSURL *)url
+{
+    return [url.absoluteString containsString:self.proxyServer.baseURL] && ![url.absoluteString containsString:@"/login/"];
+}
+
+- (NSURL *)mapURLtoProxy:(NSURL *)url
+{
+    NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    NSURLComponents *proxyComponents = [NSURLComponents componentsWithURL:self.proxyServer.serverURL         resolvingAgainstBaseURL:NO];
+    components.host = proxyComponents.host;
+    components.port = proxyComponents.port;
+    components.scheme = proxyComponents.scheme; // TODO: Determine how to use https for local traffic
+    return [components URL];
+}
+
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
     NSURLRequest *request = navigationAction.request;
-    self.fileURL = request.URL;
-    NSLog(@"FileURL: %@", self.fileURL.absoluteString);
+    NSURL *requestedURL = request.URL;
+    NSLog(@"Navigate URL: %@", requestedURL.absoluteString);
     
-    NSString *externalFileExtension = self.fileURL.pathExtension;
+    if (self.userIsLoggedIn && UseProxy && [self requestedURLIsNonProxySite:requestedURL])
+    {
+        // URL points directly to site not Proxy server
+        
+        NSLog(@"redirecting to %@", [self mapURLtoProxy:requestedURL].absoluteString);
+        [self.webView performSelector:@selector(loadRequest:) withObject:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]] afterDelay:1.0];
+       //[self.webView loadRequest:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]]];
+        if (decisionHandler)
+            decisionHandler(WKNavigationActionPolicyAllow);
+        return;
+    }
+    
+    NSString *externalFileExtension = requestedURL.pathExtension;
     if ([[externalFileExtension lowercaseString] isEqualToString:@"pdf"] ||
-        [self.fileURL.absoluteString containsString:@"servlet.FileDownload"])
+        [requestedURL.absoluteString containsString:@"servlet.FileDownload"])
     {
         
-        //Fire download
+        //Fire download -- File events are not consistent...
+        self.fileURL = requestedURL;
         NSLog(@"externalURL is %@", self.fileURL);
         QLPreviewController *ql = [[QLPreviewController alloc] init];
         ql.title = self.fileURL.absoluteString;

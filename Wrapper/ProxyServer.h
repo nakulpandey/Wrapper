@@ -15,6 +15,7 @@
 
 @property (strong, atomic) GCDWebServer *webServer;
 @property (strong, atomic) NSString *baseURL;
+@property (strong, atomic, readonly) NSURL *serverURL;
 
 - (NSURL *)startProxy;
 
