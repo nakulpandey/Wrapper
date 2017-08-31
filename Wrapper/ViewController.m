@@ -6,7 +6,8 @@
 //  Copyright © 2017 Stephen Ayers. All rights reserved.
 //
 
-// TODO: Add Proxy Server
+// TODO:
+// Add Proxy Server
 // Spinner
 // Handle Files
 // Navigation
@@ -14,12 +15,13 @@
 // Encrypt
 // Error messages
 // Make stand alone SDK + App
+// Capture logins
 
 #import "ViewController.h"
 @import QuickLook;
 
 static NSString *const SID_COOKIE = @"sid";
-static BOOL UseProxy = NO;
+static BOOL UseProxy = YES;
 static NSString *DefaultURL = @"https://community.ausure.com.au";
 
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -197,7 +199,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
 
 - (BOOL)userIsLoggedIn
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)requestedURLIsNonProxySite:(NSURL *)url
@@ -240,6 +242,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     {
         
         //Fire download -- File events are not consistent...
+        
         self.fileURL = requestedURL;
         NSLog(@"externalURL is %@", self.fileURL);
         QLPreviewController *ql = [[QLPreviewController alloc] init];
@@ -247,7 +250,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
         ql.delegate = self;
         ql.dataSource = self;
         
-        if ([QLPreviewController canPreviewItem:self.fileURL])
+        if ([requestedURL checkResourceIsReachableAndReturnError:nil] && [QLPreviewController canPreviewItem:self.fileURL])
             [self presentViewController:ql animated:YES completion:nil];
         else
         {
