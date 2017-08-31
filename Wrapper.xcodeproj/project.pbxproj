@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		455DB7231F513E520092616A /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455DB71E1F513E3D0092616A /* GCDWebServers.framework */; };
 		456758681F51344E00E292B5 /* ProxyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456758671F51344E00E292B5 /* ProxyServer.m */; };
 		459A8BC81F4F673B0037732F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BC71F4F673B0037732F /* AppDelegate.m */; };
 		459A8BCB1F4F673B0037732F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BCA1F4F673B0037732F /* ViewController.m */; };
@@ -17,58 +16,11 @@
 		459A8BD61F4F673B0037732F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BD51F4F673B0037732F /* main.m */; };
 		459A8BE01F4F673C0037732F /* WrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BDF1F4F673C0037732F /* WrapperTests.m */; };
 		459A8BEB1F4F673C0037732F /* WrapperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BEA1F4F673C0037732F /* WrapperUITests.m */; };
+		6FB015CF1F5889BB00D79477 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB015C11F58899600D79477 /* GCDWebServers.framework */; };
+		6FB015D01F5889BB00D79477 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB015C11F58899600D79477 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		455DB7151F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DD76FB20486AB0100D96B5E;
-			remoteInfo = "GCDWebServer (Mac)";
-		};
-		455DB7171F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2DDD1F61BE69EE4002CE867;
-			remoteInfo = "GCDWebServer (iOS)";
-		};
-		455DB7191F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2DDD1C71BE698A8002CE867;
-			remoteInfo = "GCDWebServer (tvOS)";
-		};
-		455DB71B1F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CEE28CD11AE004D800F4023C;
-			remoteInfo = "GCDWebServers (Mac)";
-		};
-		455DB71D1F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CEE28CEF1AE0051F00F4023C;
-			remoteInfo = "GCDWebServers (iOS)";
-		};
-		455DB71F1F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2DDD18B1BE69404002CE867;
-			remoteInfo = "GCDWebServers (tvOS)";
-		};
-		455DB7211F513E3D0092616A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E24039251BA09207000B7089;
-			remoteInfo = "Tests (Mac)";
-		};
 		459A8BDC1F4F673C0037732F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 459A8BBB1F4F673B0037732F /* Project object */;
@@ -83,10 +35,80 @@
 			remoteGlobalIDString = 459A8BC21F4F673B0037732F;
 			remoteInfo = Wrapper;
 		};
+		6FB015B81F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FB20486AB0100D96B5E;
+			remoteInfo = "GCDWebServer (Mac)";
+		};
+		6FB015BA1F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2DDD1F61BE69EE4002CE867;
+			remoteInfo = "GCDWebServer (iOS)";
+		};
+		6FB015BC1F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2DDD1C71BE698A8002CE867;
+			remoteInfo = "GCDWebServer (tvOS)";
+		};
+		6FB015BE1F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CEE28CD11AE004D800F4023C;
+			remoteInfo = "GCDWebServers (Mac)";
+		};
+		6FB015C01F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CEE28CEF1AE0051F00F4023C;
+			remoteInfo = "GCDWebServers (iOS)";
+		};
+		6FB015C21F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2DDD18B1BE69404002CE867;
+			remoteInfo = "GCDWebServers (tvOS)";
+		};
+		6FB015C41F58899600D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E24039251BA09207000B7089;
+			remoteInfo = "Tests (Mac)";
+		};
+		6FB015D11F5889BB00D79477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE28CEE1AE0051F00F4023C;
+			remoteInfo = "GCDWebServers (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6FB015D31F5889BB00D79477 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6FB015D01F5889BB00D79477 /* GCDWebServers.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = ../GCDWebServer/GCDWebServer.xcodeproj; sourceTree = "<group>"; };
+		455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = GCDWebServer/GCDWebServer.xcodeproj; sourceTree = "<group>"; };
 		456758661F51344E00E292B5 /* ProxyServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyServer.h; sourceTree = "<group>"; };
 		456758671F51344E00E292B5 /* ProxyServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxyServer.m; sourceTree = "<group>"; };
 		459A8BC31F4F673B0037732F /* Wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455DB7231F513E520092616A /* GCDWebServers.framework in Frameworks */,
+				6FB015CF1F5889BB00D79477 /* GCDWebServers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,20 +156,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		455DB70B1F513E3C0092616A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				455DB7161F513E3D0092616A /* GCDWebServer */,
-				455DB7181F513E3D0092616A /* GCDWebServer.app */,
-				455DB71A1F513E3D0092616A /* GCDWebServer.app */,
-				455DB71C1F513E3D0092616A /* GCDWebServers.framework */,
-				455DB71E1F513E3D0092616A /* GCDWebServers.framework */,
-				455DB7201F513E3D0092616A /* GCDWebServers.framework */,
-				455DB7221F513E3D0092616A /* Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		459A8BBA1F4F673B0037732F = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +222,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6FB015AE1F58899500D79477 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6FB015B91F58899600D79477 /* GCDWebServer */,
+				6FB015BB1F58899600D79477 /* GCDWebServer.app */,
+				6FB015BD1F58899600D79477 /* GCDWebServer.app */,
+				6FB015BF1F58899600D79477 /* GCDWebServers.framework */,
+				6FB015C11F58899600D79477 /* GCDWebServers.framework */,
+				6FB015C31F58899600D79477 /* GCDWebServers.framework */,
+				6FB015C51F58899600D79477 /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,10 +246,12 @@
 				459A8BBF1F4F673B0037732F /* Sources */,
 				459A8BC01F4F673B0037732F /* Frameworks */,
 				459A8BC11F4F673B0037732F /* Resources */,
+				6FB015D31F5889BB00D79477 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6FB015D21F5889BB00D79477 /* PBXTargetDependency */,
 			);
 			name = Wrapper;
 			productName = Wrapper;
@@ -328,7 +352,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 455DB70B1F513E3C0092616A /* Products */;
+					ProductGroup = 6FB015AE1F58899500D79477 /* Products */;
 					ProjectRef = 455DB70A1F513E3C0092616A /* GCDWebServer.xcodeproj */;
 				},
 			);
@@ -342,53 +366,53 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		455DB7161F513E3D0092616A /* GCDWebServer */ = {
+		6FB015B91F58899600D79477 /* GCDWebServer */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = GCDWebServer;
-			remoteRef = 455DB7151F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015B81F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB7181F513E3D0092616A /* GCDWebServer.app */ = {
+		6FB015BB1F58899600D79477 /* GCDWebServer.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = GCDWebServer.app;
-			remoteRef = 455DB7171F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015BA1F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB71A1F513E3D0092616A /* GCDWebServer.app */ = {
+		6FB015BD1F58899600D79477 /* GCDWebServer.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = GCDWebServer.app;
-			remoteRef = 455DB7191F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015BC1F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB71C1F513E3D0092616A /* GCDWebServers.framework */ = {
+		6FB015BF1F58899600D79477 /* GCDWebServers.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GCDWebServers.framework;
-			remoteRef = 455DB71B1F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015BE1F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB71E1F513E3D0092616A /* GCDWebServers.framework */ = {
+		6FB015C11F58899600D79477 /* GCDWebServers.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GCDWebServers.framework;
-			remoteRef = 455DB71D1F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015C01F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB7201F513E3D0092616A /* GCDWebServers.framework */ = {
+		6FB015C31F58899600D79477 /* GCDWebServers.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GCDWebServers.framework;
-			remoteRef = 455DB71F1F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015C21F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		455DB7221F513E3D0092616A /* Tests.xctest */ = {
+		6FB015C51F58899600D79477 /* Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = Tests.xctest;
-			remoteRef = 455DB7211F513E3D0092616A /* PBXContainerItemProxy */;
+			remoteRef = 6FB015C41F58899600D79477 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -460,6 +484,11 @@
 			isa = PBXTargetDependency;
 			target = 459A8BC21F4F673B0037732F /* Wrapper */;
 			targetProxy = 459A8BE71F4F673C0037732F /* PBXContainerItemProxy */;
+		};
+		6FB015D21F5889BB00D79477 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GCDWebServers (iOS)";
+			targetProxy = 6FB015D11F5889BB00D79477 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -593,8 +622,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wrapper/Wrapper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPV2A7GM7V;
+				DEVELOPMENT_TEAM = DEKY3SKS9M;
 				INFOPLIST_FILE = Wrapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.communities.Wrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -609,8 +639,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wrapper/Wrapper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPV2A7GM7V;
+				DEVELOPMENT_TEAM = DEKY3SKS9M;
 				INFOPLIST_FILE = Wrapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.communities.Wrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";

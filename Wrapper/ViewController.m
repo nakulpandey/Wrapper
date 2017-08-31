@@ -180,7 +180,7 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
     NSLog(@"decidePolicyForNavigationResponse");
     
-    NSArray *cookies =[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
+    NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
     for (NSHTTPCookie *cookie in cookies) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
     }

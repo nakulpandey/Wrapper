@@ -8,23 +8,51 @@
 
 #import "ProxyServer.h"
 
+@interface ProxyServer ()
+/Users/mnachbaur/Desktop/Wrapper/Wrapper/ProxyServer.m
+@property (nonatomic, strong) NSURLSession *session;
+
+@end
+
+
 @implementation ProxyServer
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        self.session = [NSURLSession sessionWithConfiguration:config];
+
+        __weak typeof(self) weakSelf = self;
+
+        self.webServer = [[GCDWebServer alloc] init];
+
+        // Add a handler to respond to GET requests on any URL
+        [self.webServer addDefaultHandlerForMethod:@"GET" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(__kindof GCDWebServerRequest * _Nonnull request, GCDWebServerCompletionBlock  _Nonnull completionBlock) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf handleRequest:request completion:completionBlock];
+        }];
+    }
+    return self;
+}
+
+- (void)handleRequest:(__kindof GCDWebServerRequest * _Nonnull)request completion:(GCDWebServerCompletionBlock  _Nonnull)completionBlock {
+
+    NSString *urlString = [self.baseURL stringByAppendingFormat:@"%@", request.path];
+    NSMutableURLRequest *newRequest = [NSMutableURLRequest new];
+    newRequest.URL = [NSURL URLWithString:urlString];
+
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:newRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*)response;
+        NSAssert([response isKindOfClass:[NSHTTPURLResponse class]], @"Didn't get a URL response for some reason");
+        completionBlock([GCDWebServerDataResponse responseWithData:data contentType:urlResponse.MIMEType]);
+    }];
+
+    [task resume];
+}
 
 - (NSURL *)startProxy
 {
-    self.webServer = [[GCDWebServer alloc] init];
-    
-    // Add a handler to respond to GET requests on any URL
-    [self.webServer addDefaultHandlerForMethod:@"GET"
-                              requestClass:[GCDWebServerRequest class]
-                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                                  NSLog(@"request: %@ - %@", request.path, [request.URL absoluteString]);
-                                  NSString *urlString = [self.baseURL stringByAppendingFormat:@"%@", request.path];
-                                  return [GCDWebServerDataResponse responseWithRedirect:[NSURL URLWithString:urlString] permanent:YES];
-                                 // return [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
-                                  
-                              }];
-    
     // Start server on port 8080
     [self.webServer startWithPort:8080 bonjourName:nil];
     NSLog(@"Visit %@ in your web browser", self.webServer.serverURL);
