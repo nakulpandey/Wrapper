@@ -21,7 +21,7 @@
 @import QuickLook;
 
 static NSString *const SID_COOKIE = @"sid";
-static BOOL UseProxy = YES;
+static BOOL UseProxy = NO;
 static NSString *DefaultURL = @"https://community.ausure.com.au";
 
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -229,8 +229,8 @@ static NSString *DefaultURL = @"https://community.ausure.com.au";
         // URL points directly to site not Proxy server
         
         NSLog(@"redirecting to %@", [self mapURLtoProxy:requestedURL].absoluteString);
-        [self.webView performSelector:@selector(loadRequest:) withObject:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]] afterDelay:1.0];
-       //[self.webView loadRequest:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]]];
+        //[self.webView performSelector:@selector(loadRequest:) withObject:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]] afterDelay:1.0];
+       [self.webView loadRequest:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]]];
         if (decisionHandler)
             decisionHandler(WKNavigationActionPolicyAllow);
         return;

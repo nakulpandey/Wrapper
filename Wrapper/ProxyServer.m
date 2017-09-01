@@ -9,7 +9,7 @@
 #import "ProxyServer.h"
 
 @interface ProxyServer ()
-/Users/mnachbaur/Desktop/Wrapper/Wrapper/ProxyServer.m
+
 @property (nonatomic, strong) NSURLSession *session;
 
 @end
@@ -32,6 +32,12 @@
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf handleRequest:request completion:completionBlock];
         }];
+        
+        [self.webServer addDefaultHandlerForMethod:@"POST" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(__kindof GCDWebServerRequest * _Nonnull request, GCDWebServerCompletionBlock  _Nonnull completionBlock) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf handleRequest:request completion:completionBlock];
+        }];
+        
     }
     return self;
 }
@@ -44,8 +50,13 @@
 
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:newRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*)response;
-        NSAssert([response isKindOfClass:[NSHTTPURLResponse class]], @"Didn't get a URL response for some reason");
+        if ([response isKindOfClass:[NSHTTPURLResponse class]])
+            completionBlock([GCDWebServerDataResponse responseWithData:data contentType:urlResponse.MIMEType]);
+        else
+        {
+        NSLog(@"Didn't get a correct URL response for some reason");
         completionBlock([GCDWebServerDataResponse responseWithData:data contentType:urlResponse.MIMEType]);
+        }
     }];
 
     [task resume];
