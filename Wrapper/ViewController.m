@@ -15,7 +15,8 @@
 // Encrypt
 // Error messages
 // Make stand alone SDK + App
-// Capture logins
+// Capture logins to dedicated pop-up
+// Integrate TwinPrime SDK
 
 #import "ViewController.h"
 @import QuickLook;
