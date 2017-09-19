@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		456758681F51344E00E292B5 /* ProxyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456758671F51344E00E292B5 /* ProxyServer.m */; };
+		456819081F7080F400B5B1F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 456819071F7080F400B5B1F0 /* libz.tbd */; };
+		4568190A1F70810600B5B1F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 456819091F70810600B5B1F0 /* MobileCoreServices.framework */; };
+		4568190C1F70811200B5B1F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568190B1F70811200B5B1F0 /* CFNetwork.framework */; };
+		4568190E1F70812100B5B1F0 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568190D1F70812100B5B1F0 /* libxml2.tbd */; };
+		459334E21F71ADCA00D97CC9 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 455921F41F58DEB70019391E /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		459A8BC81F4F673B0037732F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BC71F4F673B0037732F /* AppDelegate.m */; };
 		459A8BCB1F4F673B0037732F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BCA1F4F673B0037732F /* ViewController.m */; };
 		459A8BCE1F4F673B0037732F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459A8BCC1F4F673B0037732F /* Main.storyboard */; };
@@ -98,6 +103,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				459334E21F71ADCA00D97CC9 /* GCDWebServers.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +114,11 @@
 		455921E21F58DEB70019391E /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = GCDWebServer/GCDWebServer.xcodeproj; sourceTree = "<group>"; };
 		456758661F51344E00E292B5 /* ProxyServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyServer.h; sourceTree = "<group>"; };
 		456758671F51344E00E292B5 /* ProxyServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxyServer.m; sourceTree = "<group>"; };
+		456818FC1F707D5500B5B1F0 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
+		456819071F7080F400B5B1F0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		456819091F70810600B5B1F0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4568190B1F70811200B5B1F0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4568190D1F70812100B5B1F0 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		459A8BC31F4F673B0037732F /* Wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459A8BC61F4F673B0037732F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		459A8BC71F4F673B0037732F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -132,6 +143,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4568190E1F70812100B5B1F0 /* libxml2.tbd in Frameworks */,
+				4568190C1F70811200B5B1F0 /* CFNetwork.framework in Frameworks */,
+				4568190A1F70810600B5B1F0 /* MobileCoreServices.framework in Frameworks */,
+				456819081F7080F400B5B1F0 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +243,11 @@
 		45ADE6B71F4FE80700FCB884 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4568190D1F70812100B5B1F0 /* libxml2.tbd */,
+				4568190B1F70811200B5B1F0 /* CFNetwork.framework */,
+				456819091F70810600B5B1F0 /* MobileCoreServices.framework */,
+				456819071F7080F400B5B1F0 /* libz.tbd */,
+				456818FC1F707D5500B5B1F0 /* libbz2.1.0.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

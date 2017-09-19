@@ -23,8 +23,9 @@
 
 static NSString *const SID_COOKIE = @"sid";
 static BOOL UseProxy = NO;
-static NSString *DefaultURL = @"https://community.ausure.com.au";
+static NSString *DefaultURL = @"https://milkyway.fonterra.com";
 
+// @"https://community.ausure.com.au";
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
 // @"https://community.ausure.com.au";
 
