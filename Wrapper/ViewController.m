@@ -23,7 +23,7 @@
 
 static NSString *const SID_COOKIE = @"sid";
 static BOOL UseProxy = NO;
-static NSString *DefaultURL = @"https://milkyway.fonterra.com";
+static NSString *DefaultURL = @"https://one.perf.demo.community/s/";
 
 // @"https://community.ausure.com.au";
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -103,6 +103,20 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
     if (!self.url)
         self.url = DefaultURL;
     
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray   *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString  *documentsDirectory = [paths objectAtIndex:0];
+    NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"index.html"];
+    if (![fileManager fileExistsAtPath:filePath]){
+        NSString *stringURL = @"https://one.perf.demo.community/s/";
+        NSURL  *url = [NSURL URLWithString:stringURL];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        if ( urlData )
+        {
+            [urlData writeToFile:filePath atomically:YES];
+        }
+    }
     NSURLRequest *request = self.URLRequest;
     if (UseProxy)
     {
@@ -124,8 +138,16 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
     [self setupDefaultCookies];
     
     NSLog(@"Loading initial page: %@", request.URL);
-    if (request)
-        [self.webView loadRequest:request];
+    if (request) {
+        NSArray   *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString  *documentsDirectory = [paths objectAtIndex:0];
+        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"index.html"];
+        NSError *error;
+        NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        
+        NSLog(@"--------------------------------");
+        [self.webView loadHTMLString:fileContents baseURL:[NSURL URLWithString:@"https://one.perf.demo.community/s/s/"]];
+    }
     else
     {
         // TODO: Display error for invalid URL
@@ -148,7 +170,7 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"navigating to: %@", self.webView.URL);
+    NSLog(@"navigating to didCommitNavigation: %@", self.webView.URL);
     
     // Start spinner
     [self spinner:YES];
@@ -180,18 +202,6 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
     // Throw up user notice
 }
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-    NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
-    NSLog(@"decidePolicyForNavigationResponse");
-    
-    NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
-    for (NSHTTPCookie *cookie in cookies) {
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-    }
-    
-    decisionHandler(WKNavigationResponsePolicyAllow);
-}
-
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
     return 1;
 }
@@ -219,54 +229,6 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
     return [components URL];
 }
 
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
-    NSURLRequest *request = navigationAction.request;
-    NSURL *requestedURL = request.URL;
-    NSLog(@"Navigate URL: %@", requestedURL.absoluteString);
-    
-    if (self.userIsLoggedIn && UseProxy && [self requestedURLIsNonProxySite:requestedURL])
-    {
-        // URL points directly to site not Proxy server
-        
-        NSLog(@"redirecting to %@", [self mapURLtoProxy:requestedURL].absoluteString);
-        //[self.webView performSelector:@selector(loadRequest:) withObject:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]] afterDelay:1.0];
-       [self.webView loadRequest:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]]];
-        if (decisionHandler)
-            decisionHandler(WKNavigationActionPolicyAllow);
-        return;
-    }
-    
-    NSString *externalFileExtension = requestedURL.pathExtension;
-    if ([[externalFileExtension lowercaseString] isEqualToString:@"pdf"] ||
-        [requestedURL.absoluteString containsString:@"servlet.FileDownload"])
-    {
-        
-        //Fire download -- File events are not consistent...
-        
-        self.fileURL = requestedURL;
-        NSLog(@"externalURL is %@", self.fileURL);
-        QLPreviewController *ql = [[QLPreviewController alloc] init];
-        ql.title = self.fileURL.absoluteString;
-        ql.delegate = self;
-        ql.dataSource = self;
-        
-        if ([requestedURL checkResourceIsReachableAndReturnError:nil] && [QLPreviewController canPreviewItem:self.fileURL])
-            [self presentViewController:ql animated:YES completion:nil];
-        else
-        {
-            // TODO: Tell user not supported file type.  Maybe try DocInterctionHandle
-            NSLog(@"Quicklook does not support file type");
-        }
-        
-        if (decisionHandler) {
-            decisionHandler(WKNavigationActionPolicyCancel);
-        }
-        return;
-    }
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
 
 - (void)persistCookies
 {

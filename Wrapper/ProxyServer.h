@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDWebServers.h"
+#import "GCDWebServers/GCDWebServers.h"
 
 @interface ProxyServer : NSObject
 
