@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13ABBE5221F33063003D44FF /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 455921F61F58DEB70019391E /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		456758681F51344E00E292B5 /* ProxyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456758671F51344E00E292B5 /* ProxyServer.m */; };
 		456819081F7080F400B5B1F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 456819071F7080F400B5B1F0 /* libz.tbd */; };
 		4568190A1F70810600B5B1F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 456819091F70810600B5B1F0 /* MobileCoreServices.framework */; };
 		4568190C1F70811200B5B1F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568190B1F70811200B5B1F0 /* CFNetwork.framework */; };
 		4568190E1F70812100B5B1F0 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568190D1F70812100B5B1F0 /* libxml2.tbd */; };
-		459334E21F71ADCA00D97CC9 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 455921F41F58DEB70019391E /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		459A8BC81F4F673B0037732F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BC71F4F673B0037732F /* AppDelegate.m */; };
 		459A8BCB1F4F673B0037732F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459A8BCA1F4F673B0037732F /* ViewController.m */; };
 		459A8BCE1F4F673B0037732F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459A8BCC1F4F673B0037732F /* Main.storyboard */; };
@@ -24,6 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		13ABBE5321F33063003D44FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 455921E21F58DEB70019391E /* GCDWebServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE28CEE1AE0051F00F4023C;
+			remoteInfo = "GCDWebServers (iOS)";
+		};
 		450DFA6F1F58DF2600AE1124 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 455921E21F58DEB70019391E /* GCDWebServer.xcodeproj */;
@@ -97,13 +104,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6FB015D31F5889BB00D79477 /* Embed Frameworks */ = {
+		13ABBE5521F33063003D44FF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				459334E21F71ADCA00D97CC9 /* GCDWebServers.framework in Embed Frameworks */,
+				13ABBE5221F33063003D44FF /* GCDWebServers.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,12 +269,13 @@
 				459A8BBF1F4F673B0037732F /* Sources */,
 				459A8BC01F4F673B0037732F /* Frameworks */,
 				459A8BC11F4F673B0037732F /* Resources */,
-				6FB015D31F5889BB00D79477 /* Embed Frameworks */,
+				13ABBE5521F33063003D44FF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				450DFA701F58DF2600AE1124 /* PBXTargetDependency */,
+				13ABBE5421F33063003D44FF /* PBXTargetDependency */,
 			);
 			name = Wrapper;
 			productName = Wrapper;
@@ -491,6 +499,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		13ABBE5421F33063003D44FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GCDWebServers (iOS)";
+			targetProxy = 13ABBE5321F33063003D44FF /* PBXContainerItemProxy */;
+		};
 		450DFA701F58DF2600AE1124 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "GCDWebServers (iOS)";

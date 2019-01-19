@@ -22,8 +22,8 @@
 @import QuickLook;
 
 static NSString *const SID_COOKIE = @"sid";
-static BOOL UseProxy = NO;
-static NSString *DefaultURL = @"https://milkyway.fonterra.com";
+static BOOL UseProxy = YES;
+static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510.force.com/RAD/s/";
 
 // @"https://community.ausure.com.au";
 // @"https://coffeetest-15c5fb901dc.force.com"; // @"https://www.salesforce.com";
@@ -108,7 +108,7 @@ static NSString *DefaultURL = @"https://milkyway.fonterra.com";
     {
         self.proxyServer = [[ProxyServer alloc] init];
         self.proxyServer.baseURL = request.URL.absoluteString;
-        request = [NSURLRequest requestWithURL:self.proxyServer.startProxy];
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.proxyServer.startProxy.absoluteString stringByAppendingString:@"RAD/s"]]];
     }
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];

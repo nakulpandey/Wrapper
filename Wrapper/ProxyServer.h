@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDWebServers.h"
+#import "GCDWebServers/GCDWebServers.h"
 
 @interface ProxyServer : NSObject
 
 @property (strong, atomic) GCDWebServer *webServer;
 @property (strong, atomic) NSString *baseURL;
 @property (strong, atomic, readonly) NSURL *serverURL;
+@property (strong, atomic) NSURL *originalRequest;
 
 - (NSURL *)startProxy;
 
