@@ -18,5 +18,11 @@
 @property (strong, atomic) NSString *url;
 @property (strong, atomic) ProxyServer *proxyServer;
 @property (strong, atomic) NSURL *fileURL;
+
+
+@property (strong, atomic) NSDate *startTime;
+
+@property (strong, atomic) NSDate *endTime;
+
 @end
 

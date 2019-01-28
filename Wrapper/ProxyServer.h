@@ -16,6 +16,13 @@
 @property (strong, atomic, readonly) NSURL *serverURL;
 @property (strong, atomic) NSURL *originalRequest;
 
+@property (strong, atomic) NSDate *startTime;
+
+@property (strong, atomic) NSDate *endTime;
+
+@property (strong, atomic) NSMutableArray *requestQueue;
+
+
 - (NSURL *)startProxy;
 
 @end

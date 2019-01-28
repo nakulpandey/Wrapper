@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13187DB421F89D1100F46ABD /* resources.js in Resources */ = {isa = PBXBuildFile; fileRef = 13187DAE21F89D1000F46ABD /* resources.js */; };
+		13187DB521F89D1100F46ABD /* fonts.css in Resources */ = {isa = PBXBuildFile; fileRef = 13187DAF21F89D1000F46ABD /* fonts.css */; };
+		13187DB621F89D1100F46ABD /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 13187DB021F89D1000F46ABD /* app.css */; };
+		13187DB721F89D1100F46ABD /* inline.js in Resources */ = {isa = PBXBuildFile; fileRef = 13187DB121F89D1000F46ABD /* inline.js */; };
+		13187DB821F89D1100F46ABD /* bootstrap.js in Resources */ = {isa = PBXBuildFile; fileRef = 13187DB221F89D1100F46ABD /* bootstrap.js */; };
+		13187DBF21F9511700F46ABD /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 13187DBE21F9511700F46ABD /* index.html */; };
 		13ABBE5221F33063003D44FF /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 455921F61F58DEB70019391E /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		456758681F51344E00E292B5 /* ProxyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456758671F51344E00E292B5 /* ProxyServer.m */; };
 		456819081F7080F400B5B1F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 456819071F7080F400B5B1F0 /* libz.tbd */; };
@@ -118,6 +124,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13187DAE21F89D1000F46ABD /* resources.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = resources.js; sourceTree = "<group>"; };
+		13187DAF21F89D1000F46ABD /* fonts.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = fonts.css; sourceTree = "<group>"; };
+		13187DB021F89D1000F46ABD /* app.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = app.css; sourceTree = "<group>"; };
+		13187DB121F89D1000F46ABD /* inline.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = inline.js; sourceTree = "<group>"; };
+		13187DB221F89D1100F46ABD /* bootstrap.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.js; sourceTree = "<group>"; };
+		13187DBE21F9511700F46ABD /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		455921E21F58DEB70019391E /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = GCDWebServer/GCDWebServer.xcodeproj; sourceTree = "<group>"; };
 		456758661F51344E00E292B5 /* ProxyServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyServer.h; sourceTree = "<group>"; };
 		456758671F51344E00E292B5 /* ProxyServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxyServer.m; sourceTree = "<group>"; };
@@ -174,6 +186,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13187DA621F89CA900F46ABD /* www */ = {
+			isa = PBXGroup;
+			children = (
+				13187DB021F89D1000F46ABD /* app.css */,
+				13187DB221F89D1100F46ABD /* bootstrap.js */,
+				13187DBE21F9511700F46ABD /* index.html */,
+				13187DAF21F89D1000F46ABD /* fonts.css */,
+				13187DB121F89D1000F46ABD /* inline.js */,
+				13187DAE21F89D1000F46ABD /* resources.js */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
 		455921E31F58DEB70019391E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +216,7 @@
 		459A8BBA1F4F673B0037732F = {
 			isa = PBXGroup;
 			children = (
+				13187DA621F89CA900F46ABD /* www */,
 				455921E21F58DEB70019391E /* GCDWebServer.xcodeproj */,
 				459A8BC51F4F673B0037732F /* Wrapper */,
 				459A8BDE1F4F673C0037732F /* WrapperTests */,
@@ -446,8 +472,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13187DB721F89D1100F46ABD /* inline.js in Resources */,
 				459A8BD31F4F673B0037732F /* LaunchScreen.storyboard in Resources */,
+				13187DB521F89D1100F46ABD /* fonts.css in Resources */,
+				13187DBF21F9511700F46ABD /* index.html in Resources */,
 				459A8BD01F4F673B0037732F /* Assets.xcassets in Resources */,
+				13187DB621F89D1100F46ABD /* app.css in Resources */,
+				13187DB821F89D1100F46ABD /* bootstrap.js in Resources */,
+				13187DB421F89D1100F46ABD /* resources.js in Resources */,
 				459A8BCE1F4F673B0037732F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

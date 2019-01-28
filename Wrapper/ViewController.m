@@ -45,7 +45,7 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
     [self.cookieStore getAllCookies:^(NSArray *cookies) {
         for (NSHTTPCookie *cookie in cookies)
         {
-            NSLog(@"name: '%@' value: '%@' domain: '%@' path: '%@'",   [cookie name], [cookie value], [cookie domain], [cookie path]);
+//            NSLog(@"name: '%@' value: '%@' domain: '%@' path: '%@'",   [cookie name], [cookie value], [cookie domain], [cookie path]);
             if ([[[cookie name] lowercaseString] isEqualToString:SID_COOKIE])
             {
                 NSLog(@"sid = %@", [cookie value]);
@@ -92,16 +92,7 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
     return request;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    if (!self.url)
-    {
-        // Grab default from bundle
-        // self.url = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
-    }
-    if (!self.url)
-        self.url = DefaultURL;
+-(void) fireRequest {
     
     NSURLRequest *request = self.URLRequest;
     if (UseProxy)
@@ -109,6 +100,10 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
         self.proxyServer = [[ProxyServer alloc] init];
         self.proxyServer.baseURL = request.URL.absoluteString;
         request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.proxyServer.startProxy.absoluteString stringByAppendingString:@"RAD/s"]]];
+        
+        NSString *pathAndFileName = [[NSBundle mainBundle] pathForResource:@"inline.js" ofType:nil];
+        NSLog(@"Web root is at: %@", pathAndFileName);
+        
     }
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
@@ -122,17 +117,33 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
     
     // Inject cookies for Session/Refresh
     [self setupDefaultCookies];
-    
-    NSLog(@"Loading initial page: %@", request.URL);
+    //    NSLog(@"Loading initial page: %@", request.URL);
     if (request)
         [self.webView loadRequest:request];
     else
     {
         // TODO: Display error for invalid URL
     }
-    [self.view addSubview:self.webView];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cacheUpdated:) name:@"MyCacheUpdatedNotification" object:nil];
+    
+    if (!self.url)
+        self.url = DefaultURL;
+    [self fireRequest];
+   
+    [self.view addSubview:self.webView];
+}
+- (void)cacheUpdated:(NSNotification *)notification {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.webView reload];
+    });
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -148,41 +159,35 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"navigating to: %@", self.webView.URL);
-    
-    // Start spinner
     [self spinner:YES];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"didFinishNavigation to %@", self.webView.URL);
+//    NSLog(@"didFinishNavigation to %@", self.webView.URL);
     // Stop spinner
     [self spinner:NO];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"navigation to %@ failed with Error: %@", self.webView.URL, error.description);
+//    NSLog(@"navigation to %@ failed with Error: %@", self.webView.URL, error.description);
     
     // Stop spinner
     [self spinner:NO];
-    // Throw up user notice
-    
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"navigation to %@ failed with %@ error.", self.webView.URL, error.description);
+//    NSLog(@"navigation to %@ failed with %@ error.", self.webView.URL, error.description);
     
     // Stop spinner
     [self spinner:NO];
-    // Throw up user notice
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
-    NSLog(@"decidePolicyForNavigationResponse");
+//    NSLog(@"decidePolicyForNavigationResponse");
     
     NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
     for (NSHTTPCookie *cookie in cookies) {
@@ -224,13 +229,13 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
     
     NSURLRequest *request = navigationAction.request;
     NSURL *requestedURL = request.URL;
-    NSLog(@"Navigate URL: %@", requestedURL.absoluteString);
+//    NSLog(@"Navigate URL: %@", requestedURL.absoluteString);
     
     if (self.userIsLoggedIn && UseProxy && [self requestedURLIsNonProxySite:requestedURL])
     {
         // URL points directly to site not Proxy server
         
-        NSLog(@"redirecting to %@", [self mapURLtoProxy:requestedURL].absoluteString);
+//        NSLog(@"redirecting to %@", [self mapURLtoProxy:requestedURL].absoluteString);
         //[self.webView performSelector:@selector(loadRequest:) withObject:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]] afterDelay:1.0];
        [self.webView loadRequest:[NSURLRequest requestWithURL:[self mapURLtoProxy:requestedURL]]];
         if (decisionHandler)
@@ -280,7 +285,7 @@ static NSString *DefaultURL = @"https://sdodemo-main-14f0402cabc-150-163dbf47510
 
 - (void)cookiesDidChangeInCookieStore:(WKHTTPCookieStore *)cookieStore
 {
-    NSLog(@"cookiesDidChangeInCookieStore");
+//    NSLog(@"cookiesDidChangeInCookieStore");
     
     // Look for the SID
     [self.cookieStore getAllCookies:^(NSArray *cookies) {
